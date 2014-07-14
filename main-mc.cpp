@@ -20,6 +20,10 @@ int getch(void){
 }
 #endif
 
+int RUNCNT=150;
+int RUNDEP=3;
+float DTHRS=1.65;
+
 int _log2(int x);
 
 const char* dirToStr(dir_e dir){
@@ -119,13 +123,13 @@ dir_e computeDir(Grid &myGrid, char NT)
 	dir_e bd=LEFT;
 
 	for(int d=0;d<4;d++) {
-	for(int i=0;i<150;i++) {
+	for(int i=0;i<RUNCNT;i++) {
 		Grid tg=myGrid;
 		if(!tg.shift(getDirFromInt(d))) break;
 		//printf("%d\n", tg.getSlotNo());fflush(stdout);
 		if(NT=='+') setNT(tg, genSNT(tg));
 		else { setNT(tg, NT-'0'); }
-		for(int j=0;j<3;j++) {
+		for(int j=0;j<RUNDEP;j++) {
 			if(!tg.shift(getRandDir())) continue;
 			setNT(tg, getNT(tg));
 		}
@@ -139,11 +143,11 @@ dir_e computeDir(Grid &myGrid, char NT)
 	gotoXY(5,20);
 	for(int i=0;i<4;i++) {
 		if(dm[i]>dmm) { dmm=dm[i]; d=i; }
-		printf("%.0f ", dm[i]);
+		//printf("%.0f ", dm[i]);
 	}
-	printf("\n%.0f %d\n", dmm, m);
-	printf("%d %d\n", d, bd);
-	if(dmm/100*1.1>m) return getDirFromInt(d);
+	//printf("\n%.0f %d\n", dmm, m);
+	//printf("%d %d\n", d, bd);
+	if(dmm/RUNCNT*DTHRS>m) return getDirFromInt(d);
 	return bd;
 }
 
@@ -196,6 +200,12 @@ void PlayNRounds(int n){
 int main(int argc, char* argv[]){
     // Note: API function calls performed by any 'Game' object effects the same set of static class members,
     // so even through the 2 following function calls use different 'Game' objects, the same game continues
+	if(argc>1) { 
+		RUNCNT=atoi(argv[1]); 
+		RUNDEP=atoi(argv[2]); 
+		DTHRS=atof(argv[3]); 
+	}
+	srand(time(NULL));
     PlayNRounds(50);
     PlayNRounds(50);
     return 0;
