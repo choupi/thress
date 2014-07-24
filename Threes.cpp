@@ -6,7 +6,6 @@
 // when attempting to use global 'Game' objects. 
 // We recommend using global Game pointers instead and newing the object
 // inside main()
-int   Game::m_objCount = 0;
 bool  Game::m_objInit = FALSE;
 Grid  Game::m_grid;
 bool  Game::m_gameOver;
@@ -144,7 +143,6 @@ void Grid::print(int xPos, int yPos){
 // Game()
 // Description: initialize game record & reset game
 Game::Game(){
-    m_objCount++;
     if(!m_objInit)
         init();
     m_objInit = TRUE;
@@ -153,14 +151,10 @@ Game::Game(){
 // ~Game()
 // Description: game ends, calculate & dump results to log
 Game::~Game(){
-    m_objCount--;
-    if(m_objCount == 0 && m_objInit){
+    if(m_nRound == 100){
         m_endTime = cpuTime();
-        updateStats();
         dumpLog("open_src_version.log");
     }
-    else
-        updateStats();
 }
 
 // reset()

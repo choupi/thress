@@ -86,7 +86,6 @@ class Grid{
 
 class Game{
     private:
-        static int   m_objCount;
         static bool  m_objInit;
 
         static Grid  m_grid;
