@@ -20,10 +20,10 @@ int getch(void){
 }
 #endif
 
-int RUNCNT=150;
-int RUNDEP=3;
+int RUNCNT=1000;
+int RUNDEP=10;
 float DTHRS=1.65;
-float COEF[4]={1,1,0,-0.001};
+float COEF[4]={1,1.65,0,-0.0005};
 
 int _log2(int x);
 
