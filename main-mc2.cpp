@@ -220,8 +220,8 @@ int main(int argc, char* argv[]){
 		DTHRS=atof(argv[3]); 
 	}
 	srand(time(NULL));
-    PlayNRounds(50);
-    PlayNRounds(50);
+    PlayNRounds(100);
+    //PlayNRounds(50);
     return 0;
 }
 
