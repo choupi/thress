@@ -187,8 +187,6 @@ void PlayNRounds(int n){
     std::cout<<"Current (Hint: "<<myGame.getHint()<<")";
     myGame.printGrid(35,2);
 
-    if(myGame.isGameOver(score))  myGame.reset();
-
     Grid myGrid;
     for(int i = 0;i < n;i++){    
         isGameOver = false;
@@ -217,7 +215,7 @@ void PlayNRounds(int n){
             
        }
         myGame.printGrid(35,2);
-        if(i < n - 1)  myGame.reset();
+        myGame.reset();
         gotoXY(0,15); 
         printf("  Round:    %d      \n", i+1);
         printf("  Score:    %d      \n", score);
