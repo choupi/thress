@@ -128,9 +128,7 @@ float mcScore(float* dm)
 
 dir_e computeDir(Grid &myGrid, char NT, int* m_grabBag)
 {
-	int m=0,ms=myGrid.getScore(),nt;
 	float dm[4][4]={0};
-	dir_e bd=LEFT;
 
 	for(int d=0;d<4;d++) {
 	  dm[d][2]=0xFFFFFFFF;
